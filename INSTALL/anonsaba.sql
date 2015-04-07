@@ -1,17 +1,8 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
---
--- Database: `anonsaba`
---
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `ads`
 --
 
-CREATE TABLE IF NOT EXISTS `ads` (
+CREATE TABLE IF NOT EXISTS `PREFIXads` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` text NOT NULL,
   `type` text NOT NULL,
@@ -26,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `ads` (
 -- Table structure for table `bans`
 --
 
-CREATE TABLE IF NOT EXISTS `bans` (
+CREATE TABLE IF NOT EXISTS `PREFIXbans` (
   `id` int(25) NOT NULL AUTO_INCREMENT,
   `ip` varchar(25) NOT NULL,
   `reason` text NOT NULL,
@@ -45,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `bans` (
 -- Table structure for table `boards`
 --
 
-CREATE TABLE IF NOT EXISTS `boards` (
+CREATE TABLE IF NOT EXISTS `PREFIXboards` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(9999) NOT NULL,
   `desc` varchar(9999) NOT NULL,
@@ -81,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `boards` (
 -- Table structure for table `board_filetypes`
 --
 
-CREATE TABLE IF NOT EXISTS `board_filetypes` (
+CREATE TABLE IF NOT EXISTS `PREFIXboard_filetypes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `boardid` int(11) NOT NULL,
   `fileid` int(11) NOT NULL,
@@ -94,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `board_filetypes` (
 -- Table structure for table `expiredbans`
 --
 
-CREATE TABLE IF NOT EXISTS `expiredbans` (
+CREATE TABLE IF NOT EXISTS `PREFIXexpiredbans` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` mediumtext NOT NULL,
   `reason` text NOT NULL,
@@ -107,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `expiredbans` (
 -- Table structure for table `files`
 --
 
-CREATE TABLE IF NOT EXISTS `files` (
+CREATE TABLE IF NOT EXISTS `PREFIXfiles` (
   `id` int(11) NOT NULL,
   `board` varchar(999) NOT NULL,
   `file` varchar(999) NOT NULL,
@@ -123,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `files` (
 -- Table structure for table `filetypes`
 --
 
-CREATE TABLE IF NOT EXISTS `filetypes` (
+CREATE TABLE IF NOT EXISTS `PREFIXfiletypes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(999) NOT NULL,
   `image` text NOT NULL,
@@ -136,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `filetypes` (
 -- Table structure for table `front`
 --
 
-CREATE TABLE IF NOT EXISTS `front` (
+CREATE TABLE IF NOT EXISTS `PREFIXfront` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(999) NOT NULL,
   `by` varchar(999) NOT NULL,
@@ -153,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `front` (
 -- Table structure for table `logs`
 --
 
-CREATE TABLE IF NOT EXISTS `logs` (
+CREATE TABLE IF NOT EXISTS `PREFIXlogs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` varchar(999) NOT NULL,
   `message` varchar(999) NOT NULL,
@@ -167,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
 -- Table structure for table `pms`
 --
 
-CREATE TABLE IF NOT EXISTS `pms` (
+CREATE TABLE IF NOT EXISTS `PREFIXpms` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `to` varchar(999) NOT NULL,
   `from` varchar(999) NOT NULL,
@@ -184,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `pms` (
 -- Table structure for table `posts`
 --
 
-CREATE TABLE IF NOT EXISTS `posts` (
+CREATE TABLE IF NOT EXISTS `PREFIXposts` (
   `id` int(11) NOT NULL,
   `name` varchar(9999) NOT NULL,
   `email` varchar(9999) NOT NULL,
@@ -216,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
 -- Table structure for table `sections`
 --
 
-CREATE TABLE IF NOT EXISTS `sections` (
+CREATE TABLE IF NOT EXISTS `PREFIXsections` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order` int(11) NOT NULL,
   `abbr` varchar(999) NOT NULL,
@@ -231,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `sections` (
 -- Table structure for table `siteconfig`
 --
 
-CREATE TABLE IF NOT EXISTS `siteconfig` (
+CREATE TABLE IF NOT EXISTS `PREFIXsiteconfig` (
   `config_name` varchar(999) NOT NULL,
   `config_value` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -242,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `siteconfig` (
 -- Table structure for table `staff`
 --
 
-CREATE TABLE IF NOT EXISTS `staff` (
+CREATE TABLE IF NOT EXISTS `PREFIXstaff` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(999) NOT NULL,
   `password` varchar(999) NOT NULL,
@@ -260,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
 -- Table structure for table `wordfilters`
 --
 
-CREATE TABLE IF NOT EXISTS `wordfilters` (
+CREATE TABLE IF NOT EXISTS `PREFIXwordfilters` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `word` varchar(9999) NOT NULL,
   `replace` varchar(9999) NOT NULL,

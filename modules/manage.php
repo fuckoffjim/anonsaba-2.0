@@ -83,7 +83,7 @@ class Management {
 		$twig_data['memory'] = substr(memory_get_usage() / 1024 / 1024, 0, 4);
 		$twig_data['peakmemory'] = self::memory();
 		$twig_data['version'] = AnonsabaCore::GetConfigOption('version');
-		$howlong = time() - AnonsabaCore::GetConfigOption('installdate');
+		$howlong = time() - AnonsabaCore::GetConfigOption('installtime');
 		if ($howlong < 86400) {
 			$twig_data['installdate'] = 'Today';
 		} else {
