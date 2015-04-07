@@ -9,6 +9,8 @@
 		header('Content-Type: text/html; charset=utf-8');
 	}
 	$config = array();
+	//Installation password
+	$config['installpass'] = '';
 	//Database Configuration
 	$config['type'] = 'mysql'; //MySQL currently only supported because fuck you
 	$config['socket'] = false; //Is the DB host going to be a Unix Socket?
