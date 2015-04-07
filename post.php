@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
 	foreach ($data as $line) {
 		if ($line['locked'] == 1) {
 			AnonsabaCore::Error('ERROR', 'This board is currently locked');
-		} elseif ($_POST['message'] == '' && $_POST['file'] == '') {
+		} elseif ($_POST['message'] == '' && $_FILES['imagefile']['error'][0] == '4') {
 			AnonsabaCore::Error('Please enter', 'A message or a file no blank posts');
 		} else {
 			$level = 0;

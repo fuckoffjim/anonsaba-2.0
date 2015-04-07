@@ -50,6 +50,15 @@ class Upload {
 					/* Fix for the rarely used 4-char format */
 						$this->files[$i]['file_type'] = '.jpg';
 					}
+					$allowed = $db->GetAll('SELECT * FROM `'.prefix.'board_filetypes` WHERE `id` = '.$board_core->board['id']);
+					foreach ($allowed as $allow) {
+						$allowedfiles = $db->GetAll('SELECT `name` FROM `'.prefix.'filetypes` WHERE `id` = '.$allow['fileid']);
+						foreach ($allowedfiles as $af) {
+							if (!in_array($this->files[$i]['file_type'], '.'.$af['name'])) {
+								AnonsabaCore::Error('Sorry, that filetype is not allowed on this board.');
+							}
+						}
+					}	
 					$pass = true;
 					if (!is_file($_FILES['imagefile']['tmp_name'][$i]) || !is_readable($_FILES['imagefile']['tmp_name'][$i])) {
 						$pass = false;
@@ -113,8 +122,6 @@ class Upload {
 					$this->files[$i]['file_is_special'] = true;
 				}
 			}
-		} else {
-			AnonsabaCore::Error('Sorry, that filetype is not allowed on this board.');
 		}
 	}
 }
