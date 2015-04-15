@@ -104,12 +104,12 @@ if (isset($_POST['submit'])) {
 			} else {
 				$password = $_POST['password'];
 			}
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ipaddy = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) { 
+			if (!empty($_SERVER['REMOTE_ADDR'])) {
+				$ipaddy = $_SERVER['REMOTE_ADDR'];
+			} else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 				$ipaddy = $_SERVER['HTTP_X_FORWARDED_FOR'];
 			} else {
-				$ipaddy = $_SERVER['REMOTE_ADDR'];
+				$ipaddy = $_SERVER['HTTP_CLIENT_IP'];
 			}
 			$bancheck = $db->GetOne('SELECT `boards` FROM `'.prefix.'bans` WHERE `ip` = '.$db->quote($ipaddy));
 			$boards = explode('|', $bancheck);
