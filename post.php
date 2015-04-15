@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
 	foreach ($data as $line) {
 		if ($line['locked'] == 1) {
 			AnonsabaCore::Error('ERROR', 'This board is currently locked');
-		} elseif ($_POST['message'] == '' && $_FILES['imagefile']['error'][0] == '4') {
+		} elseif ($_POST['message'] == '' && $_FILES['imagefile']['error'][0] == '4' && !$_POST['nofile']) {
 			AnonsabaCore::Error('Please enter', 'A message or a file no blank posts');
 		} else {
 			$level = 0;
@@ -104,14 +104,14 @@ if (isset($_POST['submit'])) {
 			} else {
 				$password = $_POST['password'];
 			}
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ipaddy = $_SERVER['HTTP_CLIENT_IP'];
-			} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) { 
+			if (!empty($_SERVER['REMOTE_ADDR'])) {
+				$ipaddy = $_SERVER['REMOTE_ADDR'];
+			} else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 				$ipaddy = $_SERVER['HTTP_X_FORWARDED_FOR'];
 			} else {
-				$ipaddy = $_SERVER['REMOTE_ADDR'];
+				$ipaddy = $_SERVER['HTTP_CLIENT_IP'];
 			}
-			$bancheck = $db->GetOne('SELECT `boards` FROM `'.bans.'` WHERE `ip` = '.$db->quote($ipaddy));
+			$bancheck = $db->GetOne('SELECT `boards` FROM `'.prefix.'bans` WHERE `ip` = '.$db->quote($ipaddy));
 			$boards = explode('|', $bancheck);
 			if (in_array($_POST['board'], $boards) || $boards[0] == 'all') {
 				AnonsabaCore::Banned($_POST['board'], $ipaddy);
